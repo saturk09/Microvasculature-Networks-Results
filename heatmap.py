@@ -58,12 +58,12 @@ print(df.head())  #sanity check -- print the first 5 rows
 
 #creates the heatmap
 
-corr_vars = ['viscosity', 'velocity', 'pressure', 'shearStress']  # columns to compare
+corr_vars = ['viscosity', 'velocity', 'pressure', 'shearStress']  #columns to compare
 
 corr_matrix = df[corr_vars].corr()  #calculates correlation between every pair of these 4 columns
 #4x4 matrix filled with numbers betweej 0 and 1
 
-plt.figure(figsize=(6, 5)) # start a set-sized figure
+plt.figure(figsize=(6, 5)) #start a set-sized figure
 
 sns.heatmap(
     corr_matrix,

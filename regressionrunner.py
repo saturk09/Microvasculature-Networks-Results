@@ -9,7 +9,7 @@ from statsmodels.formula.api import ols
 # ---------------------------------------------------------------------------
 np.random.seed(42)
 
-networks = ['A', 'B']
+networks = ['1', '1']
 diabetic_statuses = [0, 1]                 # 0 = non-diabetic, 1 = diabetic
 viscosities = np.linspace(3.0, 5.0, 6)     # 6 viscosity steps, edit to match your sweep
 
@@ -43,9 +43,9 @@ for net in networks:
             })
 
 df = pd.DataFrame(rows)
-# ---------------------------------------------------------------------------
+
 # END FAKE DATA
-# ---------------------------------------------------------------------------
+
 
 #pandas file readings
 print("Data preview:")
