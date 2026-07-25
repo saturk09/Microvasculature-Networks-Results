@@ -36,7 +36,7 @@ for i, net in enumerate(networks): #enumerate() gives position number and networ
     sub_net['diabetic'] = sub_net['diabetic'].map({0: 'Non-Diabetic', 1: 'Diabetic'})
     for j, dv in enumerate(dvs): #loop to give column position and actual name of dependent variables
         sns.lineplot(data=sub_net, x='viscosity', y=dv, hue='diabetic', #palette keys
-                     marker='o', ax=axes[i, j], palette={'Non-Diabetic': 'tab:blue', 'Diabetic': 'tab:red'}) #draws line chart for variables
+        marker='o', ax=axes[i, j], palette={'Non-Diabetic': 'tab:blue', 'Diabetic': 'tab:red'}) #draws line chart for variables
         axes[i, j].set_title(f'Network {net}: {dv}') #labels chart panel
         axes[i, j].legend(title='Diabetic Retinopathy') #adds legend box for blue + red definitions
 
