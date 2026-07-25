@@ -1,8 +1,8 @@
 
-import numpy as np              # used to build the fake numbers below
-import pandas as pd             # holds our data in a table (like an Excel sheet)
-import matplotlib.pyplot as plt # draws the actual charts
-import seaborn as sns           # makes matplotlib charts easier to build/prettier
+import numpy as np              #used to build the fake numbers below
+import pandas as pd             #holds data in a table
+import matplotlib.pyplot as plt #draws the actual charts
+import seaborn as sns           #makes matplotlib charts easier to build
 
 file_name = "maxresults.csv"
 

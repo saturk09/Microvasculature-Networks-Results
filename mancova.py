@@ -1,6 +1,6 @@
-import numpy as np              # used to build the fake numbers below
-import pandas as pd             # holds our data in a table (like an Excel sheet)
-from statsmodels.multivariate.manova import MANOVA  # runs the MANOVA math
+import numpy as np              #used to build the fake numbers below
+import pandas as pd             #holds data in a table
+from statsmodels.multivariate.manova import MANOVA  #runs the MANOVA math
 
 
 networks = ['1', '2']
