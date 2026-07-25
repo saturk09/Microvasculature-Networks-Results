@@ -5,12 +5,12 @@ import seaborn as sns
 from statsmodels.formula.api import ols
 
 networks = ['1', '2']
-diabetic_statuses = [0, 1]
+diabeticstatuses = [0, 1]
 
-file_name = "ptresults.csv"
+file = "ptresults.csv"
 
 #put csv into dataframe (df)
-df = pd.read_csv(file_name)
+df = pd.read_csv(file)
 
 print(df.head())
 
@@ -31,11 +31,11 @@ if len(networks) == 1: #line recommended to add
     axes = axes.reshape(1, -1)
 
 for i, net in enumerate(networks): #enumerate() gives position number and network value
-    sub_net = df[df['network'] == net] #filters dataframe to match network
-    sub_net = sub_net.copy() #recommended to reduce errors
-    sub_net['diabetic'] = sub_net['diabetic'].map({0: 'Non-Diabetic', 1: 'Diabetic'})
+    subnet = df[df['network'] == net] #filters dataframe to match network
+    subnet = subnet.copy() #recommended to reduce errors
+    subnet['diabetic'] = subnet['diabetic'].map({0: 'Non-Diabetic', 1: 'Diabetic'})
     for j, dv in enumerate(dvs): #loop to give column position and actual name of dependent variables
-        sns.lineplot(data=sub_net, x='viscosity', y=dv, hue='diabetic', #palette keys
+        sns.lineplot(data=subnet, x='viscosity', y=dv, hue='diabetic', #palette keys
         marker='o', ax=axes[i, j], palette={'Non-Diabetic': 'tab:blue', 'Diabetic': 'tab:red'}) #draws line chart for variables
         axes[i, j].set_title(f'Network {net}: {dv}') #labels chart panel
         axes[i, j].legend(title='Diabetic Retinopathy') #adds legend box for blue + red definitions
@@ -60,14 +60,14 @@ for net in networks: #loop through each network
 
 #summary table for significance/visuals
 
-summary_rows = [] #empty list to hold 1 dictionary/network
+summaryrows = [] #empty list to hold 1 dictionary/network
 for net in networks: #loops through every network/output variable
     for dv in dvs:
         model = results[net][dv]
         term = [t for t in model.params.index if 'viscosity:C(diabetic)' in t] #lists all variable names in fitted model
         if term:
             t = term[0]
-            summary_rows.append({ #adding the matching names to folder
+            summaryrows.append({ #adding the matching names to folder
                 'network': net,
                 'output': dv,
                 'interaction_coefficient': round(model.params[t], 5),
@@ -75,6 +75,6 @@ for net in networks: #loops through every network/output variable
                 'significant_at_alpha_of_0.05?': model.pvalues[t] < 0.05,
             })
 
-summary_df = pd.DataFrame(summary_rows) #converts dictionaries to a table
+summarydf = pd.DataFrame(summaryrows) #converts dictionaries to a table
 print(f"\n\nviscosity x diabetic interaction\n")
-print(summary_df.to_string(index=False)) #prints a header then summary table
+print(summarydf.to_string(index=False)) #prints a header then summary table
